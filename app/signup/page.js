@@ -6,22 +6,22 @@ import { useRouter } from "next/navigation";
 
 export default function Page() {
     const router = useRouter();
-    const [user, setUser] = useState({email: '', password: ''});
+    const [user, setUser] = useState({ email: '', password: '' });
     const [errorMessage, setErrrorMessage] = useState('');
 
     const handleSubmit = async (e) => {
-        try{
+        try {
             e.preventDefault();
             if (user.email && user.password) {
                 setErrrorMessage('');
                 const res = await axios.post('/api/signup', user);
-                if(res.status === 200) router.push('/');
+                if (res.status === 200) router.push('/');
             } else if (!user.email || !user.password) {
                 setErrrorMessage('Please fill all the fields');
             }
-        } catch(err) {
+        } catch (err) {
             console.log(err.response.data);
-            if(err.status === 400) setErrrorMessage(err.response.data.message);
+            if (err.status === 400) setErrrorMessage(err.response.data.message);
         }
     }
 
@@ -33,7 +33,7 @@ export default function Page() {
                         width={100}
                         height={100}
                         alt="Your Company"
-                        src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+                        src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg"
                         className="mx-auto h-10 w-auto"
                     />
                     <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
@@ -46,51 +46,51 @@ export default function Page() {
                             <label htmlFor="email" className="block text-xl font-medium text-gray-900">
                                 Email address
                             </label>
-                        <div className="mt-2">
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                required
-                                autoComplete="email"
-                                className="block w-full rounded-md bg-white text-xl px-3 py-1.5 text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                                value={user.email}
-                                onChange={(e) => setUser({...user, email: e.target.value})}
+                            <div className="mt-2">
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    required
+                                    autoComplete="email"
+                                    className="block w-full rounded-md bg-white text-xl px-3 py-1.5 text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                                    value={user.email}
+                                    onChange={(e) => setUser({ ...user, email: e.target.value })}
                                 />
-                        </div>
-                    </div>
-                    <div>
-                        <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-xl font-medium text-gray-900">
-                                Password
-                            </label>
-                            <div className="text-xl">
-                            {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    Forgot password?
-                                </a> */}
                             </div>
                         </div>
-                        <div className="mt-2">
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                required
-                                autoComplete="current-password"
-                                className="block w-full rounded-md bg-white px-3 py-1.5 text-xl text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                                value={user.password}
-                                onChange={(e) => setUser({...user, password: e.target.value})}
-                            />
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <label htmlFor="password" className="block text-xl font-medium text-gray-900">
+                                    Password
+                                </label>
+                                <div className="text-xl">
+                                    {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    Forgot password?
+                                </a> */}
+                                </div>
+                            </div>
+                            <div className="mt-2">
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    autoComplete="current-password"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-xl text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                                    value={user.password}
+                                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <button
+                        <div>
+                            <button
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 onClick={(e) => handleSubmit(e)}>
-                            Sign up
-                        </button>
-                    </div>
+                                Sign up
+                            </button>
+                        </div>
                     </form>
                     <span className="text-lg font-bold text-red-600">{errorMessage}</span>
                     <p className="mt-2 text-center text-md text-gray-500">
